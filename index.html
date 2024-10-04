@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog">
+    <meta name="keywords" content="Blog">
+    <meta name="author" content="Lonyou">
+    <title>Blog</title>
+    <link rel="x-icon" href="./favicon.ico" type="image/x-icon">
+    <script src="blog_list.js"></script>
+    
+    <style type="text/css">
+        body {background-color:white;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+        h1 {color:rgba(0,0,0,0.2);font-size: 1.5em;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+        p{color:black;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+        a{text-decoration: none;color:rgba(255,255,255,0.5)}
+        .title{color:black;font-size: 2em;font-weight: 700;padding-bottom: 20px;padding-top: 10px;padding-left: 20px;padding-right: 20px;}
+        .content{color:rgba(0,0,0,0.5);font-size: 125%;font-weight: 600;padding-left: 20px;padding-right: 20px;}
+        .date{color:rgba(0,0,0,0.5);font-size: 110%;font-weight: 600;font-family: 'Times New Roman', Times, serif;font-style: italic;padding-left: 20px;padding-right: 20px;}
+    </style>
+</head>
+<body style="background-color: white;" onload="load_blogs()">
+    <!--banner-->
+    <div id="BannerCover" style="
+    width: auto;
+    height: 400px;
+    margin-left: -10px;
+    margin-top: -10px;
+    overflow: hidden;
+    margin-right: -8px;
+    position:sticky;
+    background-color: white;">
+        <img src="src/banner.jpg" draggable="false" style="box-shadow: 10px 5px 10px 0px rgba(0,0,0,0.2);position:absolute;width: 100%;left:50%;top:50%;height: auto;transform: translate(-50%, -50%);">
+        <div id="Banner" draggable="false" style="
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-right: 10px;
+        width: auto;
+        height: 400px;
+        text-shadow: 0px 4px 10px rgba(0,0,0,0.5);">
+            <div id="BannerTitle" style="position: relative;top: 100px;text-align: center;">
+            <span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 700;
+            font-size: 4em;
+            color:white;
+            top: 200em;">Blog</span>
+            <br>
+            <br>
+            <br>
+            <span style="font-size: 1.8em;
+            font-weight: 650;
+            text-align: center;
+            color:white;
+            text-shadow: 0px 4px 10px rgba(0,0,0,0.5);">desc</span>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!--About Me-->
+    <div id="AboutMe" style="float:right;
+    width: 300px;
+    height: auto;
+    line-height: 20px;
+    background-color: rgba(0,0,0,0.02);
+    padding-left:20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    margin-right: 10px;
+    ">
+    
+        <h1 style="font-size: smaller;">About Me</h1>
+        <style>
+            p{font-size: small;line-height: 80%;}
+        </style>
+        <p>1</p>
+        <p>2</p>
+        <img src="src/mail.svg" alt="Mail" height="20px" style="padding-top: 10px;"><span style="padding-left: 10px;top:-5px;position: relative;">
+            example@example.com
+        </span></img><br>
+        <img src="src/github.svg" alt="GitHub" height="20px" style="padding-top: 10px;"><span style="padding-left: 10px;top:-5px;position: relative;">
+            Vkango
+        </span></img>
+    </div>
+
+    <!--正文-->
+    <div class="Blogs" style="width:auto;position:absolute;left: 20%;top: 420px;right:400px;margin-bottom: 100px;border-bottom: 100px;">
+        <style>button{text-align: left;position:relative;left: 0px;right: 0px;width: 100%;cursor: pointer;display: block;border-radius: 3px;border-style: none;background-color: white;}
+                button:active{background-color: rgba(0,0,0,0.1);}
+                button:hover{background-color: rgba(0,0,0,0.1);}
+        </style>
+        <div class="Items">
+        </div>
+    </div>
+    <div id="Navi" style="color:white;backdrop-filter: blur(20px);box-shadow: 10px 5px 10px 0px rgba(0,0,0,0.2);width: auto;height: 48px;position: fixed;top:0px;left: 0px;right: 0px;background-color: rgba(0,0,0,0.5);">
+        <span style="color:white;line-height: 48px;left: 1em;position: relative;font-weight: 700;">Blog</span>
+        <div id="NaviLinks" style="width: auto;position:fixed;right: 10px;top: 0px;">
+            <style>
+                a:hover{color: white;}
+            </style>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "blog-manage",
+  "version": "1.0.0",
+  "description": "Manage Blog",
+  "main": "manage-blog.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lonyou",
+  "license": "MIT"
+}
