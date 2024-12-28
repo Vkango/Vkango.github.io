@@ -1,0 +1,127 @@
+body {
+    background-color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 1.5em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.title {
+    color: black;
+    font-size: 2em;
+    font-weight: 700;
+    padding: 10px 20px 20px 20px;
+}
+
+.content {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 125%;
+    font-weight: 600;
+    padding: 0 20px;
+}
+
+.date {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 110%;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    padding: 0 20px;
+}
+
+#BannerCover {
+    width: auto;
+    height: 400px;
+    margin: -10px -8px 0 -10px;
+    overflow: hidden;
+    position: sticky;
+    background-color: white;
+}
+
+#Banner {
+    margin: 10px;
+    width: auto;
+    height: 400px;
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+#BannerTitle {
+    position: relative;
+    top: 100px;
+    text-align: center;
+}
+
+#AboutMe {
+    float: right;
+    width: 300px;
+    height: auto;
+    line-height: 20px;
+    background-color: rgba(0, 0, 0, 0.02);
+    padding-left: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    margin-right: 10px;
+}
+
+#AboutMe p {
+    font-size: small;
+    line-height: 80%;
+}
+
+#Navi {
+    color: white;
+    backdrop-filter: blur(20px);
+    box-shadow: 10px 5px 10px 0px rgba(0, 0, 0, 0.2);
+    width: auto;
+    height: 48px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#Navi span {
+    color: white;
+    line-height: 48px;
+    left: 1em;
+    position: relative;
+    font-weight: 700;
+}
+
+#NaviLinks a:hover {
+    color: white;
+}
+
+button {
+    text-align: left;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    display: block;
+    border-radius: 3px;
+    border-style: none;
+    background-color: white;
+}
+
+button:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
