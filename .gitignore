@@ -1,0 +1,9 @@
+.idea
+.vscode
+static/typst/*
+node_modules
+public/
+target/
+static/apollo-typst
+static/typst
+static/wasm

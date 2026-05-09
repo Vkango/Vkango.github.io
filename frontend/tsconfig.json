@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+      "types": ["./src/global.d.ts", "node"],
+      "baseUrl": ".",
+      "outDir": "dist",
+      "module": "ESNext",
+      "moduleResolution": "bundler",
+      "target": "ES2020",
+      "allowJs": true,
+      "checkJs": false,
+      "noImplicitAny": true,
+      "importHelpers": true,
+      "isolatedModules": true,
+      "strictNullChecks": true,
+      "stripInternal": true,
+      "lib": ["ES2020", "DOM", "DOM.Iterable"],
+      "declaration": true,
+      "declarationMap": true,
+      "inlineSources": true,
+      "inlineSourceMap": true,
+      "composite": true,
+    },
+    "include": [
+        "src/**/*.ts",
+        "breakpoints.json"
+    ],
+    
+  }
