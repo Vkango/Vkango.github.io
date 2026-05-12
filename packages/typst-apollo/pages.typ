@@ -22,7 +22,7 @@
 
 // This is important for shiroa to produce a responsive layout
 // and multiple targets.
-#import "@preview/shiroa:0.2.3": get-page-width, target, is-web-target, is-pdf-target, plain-text
+#import "@preview/shiroa:0.2.3": get-page-width, is-pdf-target, is-web-target, plain-text, target
 #import "theme.typ": *
 
 #let page-width = get-page-width()
@@ -44,7 +44,6 @@
 // It takes your content and some metadata and formats it.
 // Go ahead and customize it to your liking!
 #let project(title: "Typst Book", authors: (), show-title: false, show-authors: false, body) = {
-
   // set basic document metadata
   set document(author: authors.map(a => a.name), title: title) if not is-pdf-target
 
@@ -73,7 +72,7 @@
   ) if is-web-target
 
   // set text and line style
-  set text(font: main-font, size: 16pt, fill: main-color, lang: "en")
+  set text(font: main-font, size: 16pt, fill: main-color, lang: "zh")
   set line(stroke: main-color)
   set table(stroke: main-color)
 

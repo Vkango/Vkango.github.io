@@ -14,6 +14,8 @@
 
 #let main-font = (
   "Charter",
+  "Source Han Serif CN",
+  "Noto Serif SC",
   "Source Han Serif SC",
   "Source Han Serif TC",
   "Linux Libertine",
