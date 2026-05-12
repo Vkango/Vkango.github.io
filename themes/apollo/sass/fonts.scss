@@ -45,3 +45,19 @@
   src: url('fonts/SourceHanSerifCN/SourceHanSerifCN-Bold.otf'), local('otf');
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Source Han Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/SourceHanSerifCN/SourceHanSerifCN-Regular.otf'), local('otf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Han Serif';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/SourceHanSerifCN/SourceHanSerifCN-Bold.otf'), local('otf');
+  font-display: swap;
+}

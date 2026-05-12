@@ -10,7 +10,8 @@ const fontPaths = [
   resolve(root, 'fonts'),
   resolve(root, 'assets/fonts'),
   resolve(root, 'asset/fonts'),
-  resolve(root, 'static/fonts')
+  resolve(root, 'static/fonts'),
+  resolve(root, 'themes/apollo/static/fonts'),
 ]
 
 const themes = ['light', 'dark'];
