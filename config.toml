@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://blog.dark-flames.com"
+base_url = "http://127.0.0.1:5500/public"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
@@ -15,7 +15,7 @@ taxonomies = [{ name = "tags", feed = true }]
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
-highlight_code = true
+# highlight_code = true
 
 [extra]
 menu = [
@@ -27,8 +27,7 @@ mathjax = true
 mathjax_dollar_inline_enable = true
 
 socials = [
-  { name = "twitter", url = "https://twitter.com/Darkf1ames", icon = "twitter" },
-  { name = "github", url = "https://github.com/dark-flames", icon = "github" },
+  { name = "github", url = "https://github.com/Vkango", icon = "github" },
 ]
 
 insert_anchor_links = "heading"

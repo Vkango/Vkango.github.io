@@ -176,12 +176,12 @@
 
 "@myriaddreamin/typst-ts-node-compiler-linux-x64-gnu@0.6.0":
   version "0.6.0"
-  resolved "https://registry.npmjs.org/@myriaddreamin/typst-ts-node-compiler-linux-x64-gnu/-/typst-ts-node-compiler-linux-x64-gnu-0.6.0.tgz"
+  resolved "https://registry.yarnpkg.com/@myriaddreamin/typst-ts-node-compiler-linux-x64-gnu/-/typst-ts-node-compiler-linux-x64-gnu-0.6.0.tgz#01db6a05dbf1b584474cc2fae13c1db976e26329"
   integrity sha512-3Y2ORiYuCTzQkiHSCHWiGuzTBbNvHTB2lCr3DDsZdvTZ2LZMifPwwICN26X3tlnt6GyC3o/ejZBcMnfNqYbdCw==
 
 "@myriaddreamin/typst-ts-node-compiler-linux-x64-musl@0.6.0":
   version "0.6.0"
-  resolved "https://registry.npmjs.org/@myriaddreamin/typst-ts-node-compiler-linux-x64-musl/-/typst-ts-node-compiler-linux-x64-musl-0.6.0.tgz"
+  resolved "https://registry.yarnpkg.com/@myriaddreamin/typst-ts-node-compiler-linux-x64-musl/-/typst-ts-node-compiler-linux-x64-musl-0.6.0.tgz#671af92658c3df5a37f3c277cfdc21ca51033377"
   integrity sha512-b+kTb4vI0sFTkPtIAUE+UqjhZ4kTiAkh4F/2QKnFitAsURlLcRwTcMc9NJm6SXwW1OM0nPj1IGTfUOFpqLOIPQ==
 
 "@myriaddreamin/typst-ts-node-compiler-win32-arm64-msvc@0.6.0":
@@ -196,7 +196,7 @@
 
 "@myriaddreamin/typst-ts-node-compiler@^0.6.0":
   version "0.6.0"
-  resolved "https://registry.npmjs.org/@myriaddreamin/typst-ts-node-compiler/-/typst-ts-node-compiler-0.6.0.tgz"
+  resolved "https://registry.yarnpkg.com/@myriaddreamin/typst-ts-node-compiler/-/typst-ts-node-compiler-0.6.0.tgz#3f778d70dce0cdb777ffd1ffe956bdd9839b4186"
   integrity sha512-C40MzRKZ8pDWzrS7VOtTypGyFaHTuZFFx3o/uQ6ryS2GqZkK3vGox4lIpR7ct11UHiAjQNR3LFQ5WjQ7P3niBQ==
   optionalDependencies:
     "@myriaddreamin/typst-ts-node-compiler-android-arm-eabi" "0.6.0"

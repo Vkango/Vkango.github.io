@@ -1,4 +1,4 @@
-+++
+<!-- +++
 title = "Shortcode Example"
 date = "2024-06-14"
 
@@ -75,4 +75,4 @@ Finally, we have center
 ```markdown
 {{/* note(center=true, header="Centered Text", body="This is centered text") */}}
 ```
-It works good enough for me!
+It works good enough for me! -->

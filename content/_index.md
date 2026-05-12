@@ -1,8 +1,8 @@
 +++
-title= "Apollo Theme"
+title= "Welcome"
 template = "homepage.html"
 +++
 
-Thanks for checking out this theme!
+吾等在此, 静候君归.
 
-Checkout all the [options you can configure](./posts/configuration) and the [example pages](./tags/example/).[Test Typst](./posts/test)
+可以 [查看全部文章](./posts) 或 [查看分类](./tags/)

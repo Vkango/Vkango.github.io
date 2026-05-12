@@ -1,4 +1,4 @@
-+++
+<!-- +++
 title = "Ancestors: Typst"
 date = "2024-07-09"
 
@@ -7,4 +7,4 @@ tags=["documentation"]
 
 [extra]
 typst = "posts/test"
-+++
++++ -->
