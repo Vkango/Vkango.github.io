@@ -20,6 +20,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Enable Yarn
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build frontend assets
+        run: yarn build:fe
+
+      - name: Build typst content
+        run: yarn build:typ
+
       - name: Install Zola
         uses: taiki-e/install-action@v2
         with:
