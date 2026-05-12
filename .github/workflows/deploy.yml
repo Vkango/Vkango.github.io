@@ -36,7 +36,7 @@ jobs:
         run: yarn build:fe
 
       - name: Install typst-ts-cli
-        run: npm i -g @myriaddreamin/typst-ts-cli
+        run: cargo install --locked --git https://github.com/Myriad-Dreamin/typst.ts typst-ts-cli
 
       - name: Build typst content
         run: yarn build:typ
