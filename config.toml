@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "http://127.0.0.1:5500/public"
+base_url = "https://vkango.top"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
@@ -19,15 +19,15 @@ taxonomies = [{ name = "tags", feed = true }]
 
 [extra]
 menu = [
-  { name = "/posts", url = "/posts", weight = 1 },
-  { name = "/tags", url = "/tags", weight = 2 },
-  { name = "/about", url = "/about", weight = 3 },
+    { name = "/posts", url = "/posts", weight = 1 },
+    { name = "/tags", url = "/tags", weight = 2 },
+    { name = "/about", url = "/about", weight = 3 },
 ]
 mathjax = true
 mathjax_dollar_inline_enable = true
 
 socials = [
-  { name = "github", url = "https://github.com/Vkango", icon = "github" },
+    { name = "github", url = "https://github.com/Vkango", icon = "github" },
 ]
 
 insert_anchor_links = "heading"
