@@ -2,7 +2,7 @@
 #import "@preview/shiroa:0.2.3": *
 #import "@preview/unequivocal-ams:0.1.0": proof, theorem
 #import pages: *
-
+#import "@preview/cetz:0.4.2"
 #show: project.with(
   title: "从 Lagrange 定理到 PCGrad 多任务优化方法",
   authors: (
@@ -24,7 +24,13 @@
 
 #set heading(numbering: "1.1.")
 
-#let theorem = thmbox("theorem", "Theorem", fill: rgb("#eeffee"))
+#let theorem = thmbox(
+  "theorem",
+  "Theorem",
+  inset: (top: 10pt, bottom: 10pt, left: 10pt, right: 10pt),
+  radius: 0pt,
+  stroke: (bottom: 1pt, top: 1pt),
+)
 #let corollary = thmplain(
   "corollary",
   "Corollary",
@@ -148,6 +154,290 @@ $
 
 这两个空间是正交的.
 
+= KKT条件的理解
+
+库恩-塔克条件是确定某点为最优点的*必要条件*. 但仅对于凸规划充要.
+
+#theorem[*KKT条件*
+
+  设$x^*$是非线性规划问题的*局部最优解*, 且$x^*$点的所有*起作用约束*的梯度$nabla g_i (x^*) (i=1,2,...,p)$和$nabla h_j (x^*) (j=1,2,...,q)$是*线性无关的*, 则存在向量
+  $
+    lambda^*=[lambda_1^*,lambda_2^*,...,lambda_p^*]^T quad"和"quad mu^*=[mu_1^*,mu_2^*,...,mu_n^*]^T
+  $
+
+  对带一般约束的非线性规划问题, 可引进拉格朗日函数:
+  $
+    L(x,lambda,mu)=f(x)+sum_(i=1)^p lambda_i g_i (x)+sum_(j=1)^q mu_j h_j (x)
+  $
+
+  其中, $lambda=[lambda_1,lambda_2,...,lambda_p]^T,mu=[mu_1,mu_2,...,mu_q]^T$叫做拉格朗日乘子.
+
+  使得:
+
+  $
+    cases(nabla f(x^*)+sum_(i=1)^p lambda_i^* nabla g_i (x^*)+sum_(j=1)^q mu_j^* nabla h_j (x^*)=0\,, lambda_i^* g_i (x^*)=0\,i=1\,2\,...\,p\,, lambda_i^*>=0\,i=1\,2\,...\,p.)
+  $
+
+  满足上述条件的点叫做库恩-塔克点.
+]
+
+#theorem[*充分条件*
+
+  若$x$满足库恩-塔克条件, 则$x$必为凸规划的局部最优解, 进而为整体最优解.]
+
+点$x^*$本身要满足:
+
+- 等式约束: $h_j (x^*)=0$.
+
+- 不等式约束: $g_i (x^*)<=0$.
+
+也即, *原始可行性*, 必须*逐个满足*, 不能*相互抵消*.
+
+同时, KKT条件给出了梯度平衡:
+
+$
+  nabla f(x^*)+sum lambda_i nabla g_i (x^*)+sum mu_j nabla h_j (x^*)=0
+$
+
+即在最优点, *目标函数的梯度*被一些约束的*法相方向*的*线性组合*抵消掉了.
+
+// 这里注意: 抵消的是*方向/法向量*, 而不是*约束值*.
+
+因此, $g(x^*)$和$h(x^*)$是"这个点满不满足约束".
+
+$nabla g(x^*),nabla h(x^*)$是"这个约束在这个点附近限制往哪边走". 这个是KKT讨论的.
+
+下面这张图给出了*到达局部最优解时的梯度情况*.
+
+#let c_obj = rgb("#d9485f")  // 目标函数下降方向
+#let c_con = rgb("#2563eb")  // 约束梯度
+#let c_fea = rgb("#16a34a")  // 可行方向
+#let c_eq = rgb("#f59e0b")  // 等式约束曲线
+#let c_ina = rgb("#9ca3af")  // 非活跃约束
+#let c_fill = rgb("#dcfce7")  // 可行域填充
+
+#figure(caption: [])[
+  #align(center, scale(80%)[
+
+    #cetz.canvas(length: 1.5cm, {
+      import cetz.draw: *
+      content((2.9, 6.4), anchor: "south", [等式约束: 只能沿切向走])
+      content((10.6, 6.4), anchor: "south", [不等式约束: 只有活跃约束参与平衡])
+
+      bezier(
+        (4.6, 1.4),
+        (0, 2),
+        (1.0, 6),
+        (2.2, 1.8),
+        stroke: (paint: c_eq, thickness: 1.2pt),
+      )
+      content((4.5, 1.85), anchor: "west", [$h(x)=0$])
+      // 最优点 x*
+      circle((2.1, 3.55), radius: 0.08, fill: black)
+      content((2.3, 3.5), anchor: "west", [$x^*$])
+      // 切线（可行方向）
+      line(
+        (0, 3.29),
+        (4.00, 3.77),
+        stroke: (paint: c_fea, thickness: 0.9pt, dash: (3pt, 2pt)),
+      )
+      content((4.2, 4), anchor: "west", [切向方向])
+      // 沿切线的两个可行方向
+      line(
+        (2.1, 3.55),
+        (1, 3.42),
+        stroke: (paint: c_fea, thickness: 1pt),
+        mark: (end: ">"),
+      )
+      line(
+        (2.1, 3.55),
+        (3.00, 3.66),
+        stroke: (paint: c_fea, thickness: 1pt),
+        mark: (end: ">"),
+      )
+      // 目标函数最想下降的方向 -∇f
+      line(
+        (2.1, 3.55),
+        (2.0, 4.55),
+        stroke: (paint: c_obj, thickness: 1.3pt),
+        mark: (end: ">"),
+      )
+      content((2.10, 4.60), anchor: "south-east", [$-nabla f(x^*)$])
+      // 等式约束梯度 ∇h
+      line(
+        (2.1, 3.55),
+        (2.2, 2.65),
+        stroke: (paint: c_con, thickness: 1.3pt),
+        mark: (end: ">"),
+      )
+      content((2, 2.50), anchor: "north-west", [$nabla h(x^*)$])
+      content((2.9, 0), anchor: "south", [最优时，下降方向被法向“挡住”])
+      // =========================================================
+      // 右图：不等式约束，只有活跃约束参与
+      // =========================================================
+      // 可行域
+      rect((8.7, 1.1), (12.6, 4.7), fill: red.transparentize(50%), stroke: none)
+      rect((8.7, 2.5), (12.6, 4.7), fill: c_fill, stroke: none)
+
+      // 两条活跃边界
+      line(
+        (8.7, 1.1),
+        (8.7, 4.7),
+        stroke: (paint: c_fea, thickness: 1.3pt),
+      )
+      line(
+        (8.7, 4.7),
+        (12.6, 4.7),
+        stroke: (paint: c_fea, thickness: 1.3pt),
+      )
+      content((12.65, 4.75), anchor: "west", [$g_2(x)=0$])
+      content((8.7, 0.95), anchor: "north", [$g_1(x)=0$])
+      // 最优点 x*
+      circle((8.7, 4.7), radius: 0.08, fill: black)
+      content((8.85, 4.60), anchor: "west", [$x^*$])
+      // 一个可行方向（往可行域内部）
+      line(
+        (8.7, 4.7),
+        (9.75, 3.85),
+        stroke: (paint: c_fea, thickness: 1pt),
+        mark: (end: ">"),
+      )
+      content((9.85, 3.80), anchor: "west", [可行方向])
+      // 最想下降的方向
+      line(
+        (8.7, 4.7),
+        (7.55, 5.85),
+        stroke: (paint: c_obj, thickness: 1.4pt),
+        mark: (end: ">"),
+      )
+      content((7.45, 5.90), anchor: "south-east", [$-nabla f(x^*)$])
+      // 活跃约束的梯度
+      line(
+        (8.7, 4.7),
+        (7.45, 4.7),
+        stroke: (paint: c_con, thickness: 1.25pt),
+        mark: (end: ">"),
+      )
+      content((7.35, 4.70), anchor: "east", [$nabla g_1(x^*)$])
+      line(
+        (8.7, 4.7),
+        (8.7, 5.95),
+        stroke: (paint: c_con, thickness: 1.25pt),
+        mark: (end: ">"),
+      )
+      content((8.85, 5.95), anchor: "west", [$nabla g_2(x^*)$])
+      // KKT 平衡关系
+      // content(
+      //   (9.2, 5.30),
+      //   anchor: "south-west",
+      //   [$-nabla f(x^*) = mu_1 nabla g_1(x^*) + mu_2 nabla g_2(x^*)$],
+      // )
+      // 非活跃约束：不贴住边界
+      bezier(
+        (8.7, 2.6),
+        (12.6, 2.5),
+        (8.7, 1),
+        (9.10, 1.1),
+        stroke: (paint: purple, thickness: 0.9pt, dash: (3pt, 2pt)),
+        fill: c_fill,
+      )
+      content((11, 2), anchor: "south", [#set text(fill: purple)
+
+        $g_3(x) = 0$: 分界])
+      content((10.8, 1.1), anchor: "south", [$g_3(x) > 0$: 违反约束])
+      content((10.65, 2.8), anchor: "south", [$g_i (x) < 0$: 非活跃])
+      content((10.6, 0), anchor: "south", [只有活跃约束才会提供"反作用力"])
+    })
+
+  ])]
+
+对于左图, $nabla f(x^*)+lambda nabla h(x^*)=0$, 即目标函数的梯度与约束函数的梯度共线.
+
+在等式约束$h(x)=0$的情况下, 动点只能在这条橘黄线的曲线上移动. 在曲线上的任何一点, 能够让目标函数$f(x)$继续下降的方向是$-nabla f(x)$.
+
+如果在某一点, $-nabla f(x)$沿着曲线的*切向*还有分量, 则说明动点还可以继续沿着那个曲线走, 使得目标函数更小.
+
+当$-nabla f(x^*)$完全垂直于曲线的切向时, 此时, $-nabla f(x^*)$所有的力量指向曲线的法向量, 即$nabla h(x^*)$的方向.
+
+对于右图, 可以解释KKT条件.
+
++ *平稳性*条件与*对偶可行性*条件.
+
+  数学公式: $-nabla f(x^*)=sum mu_i nabla g_i (x^*)$且$mu_i>=0$.
+
+  极值点$x^*$处, 目标函数想往$-nabla f(x^*)$方向走, 但是被边界$g_1(x)=0$和$g_2(x)=0$挡住了.
+
+  $-nabla f$必须落在$nabla g_1$和$nabla g_2$构成的锥形区域内, 因此$mu_i$必须$>=0$.
+
++ 互补松驰性
+
+  $mu_i dot g_i (x^*)=0$
+
+  在图中, $mu_3=0$. 只有活跃约束才会提供反作用力.
+
++ 可行方向
+
+  绿色区域是可行域, 从$x^*$出发, 指向绿色区域内部的向量就是可行方向.
+
+  在最优点, 任何可行方向都不再是*下降方向*, 即与$-nabla f$的夹角$>90degree$
+
+
+左图: 可行方向$d$满足$nabla h(x^*)^T d=0$, 表示$d$在切空间里. 而最优时又要求$nabla f(x^*)^T d=0,quad forall d,nabla h(x^*)^T d=0$
+
+只有切向能走, 在最优点, 切向没有下降的一阶趋势, 因此$nabla f$只能落在法向上.
+
+共线比反向包含更多向量. 正好对应等式乘子$mu in RR$, 不等式乘子$lambda >=0$.
+
+可行方向有很多, 但是KKT点不是要求*无可行方向*, 而是*无可行下降方向*.
+
+
+// == KKT与一阶微分条件的关系
+
+// $
+//   min f(x),quad "s.t."quad h_j (x)=0,j=1,...,q
+// $
+
+// 设$x^*$是*局部最优点*.
+
+// 如果从$x^*$往某一个小方向$d$走一点, 走到$x^*+t d$, 为了可行, 必须要有$ h_j (x^*+t d)=0 $
+
+// 对$h_j$做一阶泰勒展开:
+
+// $
+//   h_j (x^*+t d)=h_j (x^*)+t nabla h_j (x^*)^T d+o(t)
+// $
+
+// 因为$h_j (x^*)=0$, 所以要想一阶上仍然留在约束面上, 必须满足
+// $
+//   nabla h_j (x^*)^T d=0,j=1,...,q
+// $
+
+// 也就是说, 可行方向$d$必须落在约束面的切空间内.
+
+// 对于目标函数$ f(x^*+t d)=f(x^*)+t nabla f(x^*)^T d+o(t) $
+
+// 因为$x^*$是局部最优点, 所以沿任何可行方向都不能让$f$一阶下降.
+
+// 对于等式约束, $d$和$-d$都可行, 则有
+
+// $
+//   nabla f(x^*)^T d=0
+// $
+
+// 对于所有满足$nabla h_j (x^*)^T d=0$的$d$都成立.
+
+// 等价于$nabla f(x^*)$与整个切空间正交.
+
+// 而切空间的正交补, 正好就是约束梯度张成的法空间:$ nabla f(x^*)in "span"{nabla h_1 (x^*),...,nabla h_q (x^*)} $
+
+// 于是存在$mu_j$, 使得$ nabla f(x^*)+sum_(j=1)^q mu_j nabla h_j (x^*)=0 $
+
+// 这是Lagrange乘子条件.
+
+// == 线性无关性
+
+
+
 = 迁移
 
 == 原始想法
@@ -266,7 +556,7 @@ $
 因此$ d=g_i-(g_i^T g_j)/(||g_j||^2)g_j $
 
 (其实想复杂了, 如果$g_i dot g_j <0$, 就减去$g_i$在$g_j$方向上的投影即可). 这是符合直觉的:
-#import "@preview/cetz:0.4.2"
+
 
 在论文中的PCGrad公式
 $
