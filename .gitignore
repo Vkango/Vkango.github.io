@@ -7,3 +7,4 @@ target/
 static/apollo-typst
 static/typst
 static/wasm
+main.pdf
