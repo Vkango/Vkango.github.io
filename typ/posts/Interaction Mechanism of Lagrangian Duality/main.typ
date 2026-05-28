@@ -569,7 +569,7 @@ $
 
 1. *原始可行性*
   $
-    g_i(x^*) <= 0
+    g_i (x^*) <= 0
   $
 
 2. *对偶可行性*
@@ -579,12 +579,12 @@ $
 
 3. *互补松弛*
   $
-    lambda_i^* g_i(x^*) = 0
+    lambda_i^* g_i (x^*) = 0
   $
 
 4. *驻点条件*
   $
-    nabla f(x^*) + sum_i lambda_i^* nabla g_i(x^*) = 0
+    nabla f(x^*) + sum_i lambda_i^* nabla g_i (x^*) = 0
   $
 
 这四条正好对应前面的对抗图景:
