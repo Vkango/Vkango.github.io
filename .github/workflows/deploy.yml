@@ -16,6 +16,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TYPST_TS_CLI_REPO: https://github.com/Myriad-Dreamin/typst.ts
+      TYPST_TS_CLI_ROOT: ${{ github.workspace }}/.tools/typst-ts-cli
+      TYPST_TS_CLI_TARGET_DIR: ${{ github.workspace }}/.cargo-target/typst-ts-cli
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -35,8 +39,29 @@ jobs:
       - name: Build frontend assets
         run: yarn build:fe
 
+      - name: Resolve typst-ts-cli revision
+        id: typst-ts-cli
+        run: |
+          echo "rev=$(git ls-remote "$TYPST_TS_CLI_REPO" HEAD | cut -f1)" >> "$GITHUB_OUTPUT"
+          echo "rustc_release=$(rustc -Vv | awk '/^release:/ { print $2 }')" >> "$GITHUB_OUTPUT"
+
+      - name: Cache typst-ts-cli
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ${{ env.TYPST_TS_CLI_ROOT }}
+            ${{ env.TYPST_TS_CLI_TARGET_DIR }}
+          key: ${{ runner.os }}-typst-ts-cli-${{ steps.typst-ts-cli.outputs.rustc_release }}-${{ steps.typst-ts-cli.outputs.rev }}
+          restore-keys: |
+            ${{ runner.os }}-typst-ts-cli-${{ steps.typst-ts-cli.outputs.rustc_release }}-
+            ${{ runner.os }}-typst-ts-cli-
+
       - name: Install typst-ts-cli
-        run: cargo install --locked --git https://github.com/Myriad-Dreamin/typst.ts typst-ts-cli
+        run: |
+          cargo install --locked --git "$TYPST_TS_CLI_REPO" --rev "${{ steps.typst-ts-cli.outputs.rev }}" --root "$TYPST_TS_CLI_ROOT" --target-dir "$TYPST_TS_CLI_TARGET_DIR" typst-ts-cli
+          echo "$TYPST_TS_CLI_ROOT/bin" >> "$GITHUB_PATH"
 
       - name: Build typst content
         run: yarn build:typ
