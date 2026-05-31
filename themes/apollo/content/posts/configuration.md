@@ -3,7 +3,7 @@ title = "Configuring Apollo"
 date = "2024-07-09"
 
 [taxonomies]
-tags=["documentation"]
+tags=["Documentation"]
 
 [extra]
 repo_view = true

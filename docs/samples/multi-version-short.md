@@ -3,7 +3,7 @@ title = "Ancestors: Multi Version(Short)"
 date = "2024-07-09"
 
 [taxonomies]
-tags=["documentation"]
+tags=["Documentation"]
 
 [extra]
 typst = "intro/short"

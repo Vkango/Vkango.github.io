@@ -3,7 +3,7 @@ title = "漫游 Dither Art"
 date = "2026-05-27"
 
 [taxonomies]
-tags=["documentation", "roaming", "design", "digital image processing",  "deeplearning", "math"]
+tags=["Roaming", "Image Processing", "Graphics", "Algorithms", "Art", "Visualization", "Documentation"]
 
 [extra]
 typst = "posts/Roaming Dither Art"
