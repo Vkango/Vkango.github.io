@@ -1,0 +1,103 @@
+% 1. SGD 的随机近似根基
+@article{robbins1951stochastic,
+  title={A stochastic approximation method},
+  author={Robbins, Herbert and Monro, Sutton},
+  journal={The Annals of Mathematical Statistics},
+  pages={400--407},
+  year={1951},
+  publisher={JSTOR}
+}
+
+% 2. Gradient Descent (全量梯度下降，经典优化)
+@book{nocedal2006numerical,
+  title={Numerical Optimization},
+  author={Nocedal, Jorge and Wright, Stephen J},
+  year={2006},
+  publisher={Springer-Verlag, New York},
+  doi={10.1007/978-0-387-40065-5}
+}
+
+% 3. SGD 作为随机梯度下降
+% 注：SGD 本身没有单一"创始论文"，它由 Robbins-Monro 框架演化而来。
+% 以下这篇是深度学习中 SGD with Momentum 的关键参考：
+@inproceedings{sutskever2013importance,
+  title={On the importance of initialization and momentum in deep learning},
+  author={Sutskever, Ilya and Martens, James and Dahl, George and Hinton, Geoffrey},
+  booktitle={Proceedings of the 30th International Conference on Machine Learning},
+  pages={1139--1147},
+  year={2013},
+  organization={PMLR}
+}
+
+% 4. Momentum (Heavy Ball) 方法
+@article{polyak1964some,
+  title={Some methods of speeding up the convergence of iteration methods},
+  author={Polyak, Boris T},
+  journal={USSR Computational Mathematics and Mathematical Physics},
+  volume={4},
+  number={5},
+  pages={1--17},
+  year={1964},
+  publisher={Elsevier},
+  doi={10.1016/0041-5553(64)90137-5}
+}
+
+% 5. Nesterov Accelerated Gradient (NAG)
+@article{nesterov1983method,
+  title={A method of solving a convex programming problem with convergence rate $O(1/k^2)$},
+  author={Nesterov, Yurii E},
+  journal={Soviet Mathematics Doklady},
+  volume={27},
+  number={2},
+  pages={372--376},
+  year={1983}
+}
+
+% 6. AdaGrad
+@article{duchi2011adaptive,
+  title={Adaptive subgradient methods for online learning and stochastic optimization},
+  author={Duchi, John and Hazan, Elad and Singer, Yoram},
+  journal={Journal of Machine Learning Research},
+  volume={12},
+  number={61},
+  pages={2121--2159},
+  year={2011},
+  url={http://jmlr.org/papers/v12/duchi11a.html}
+}
+
+% 7. RMSprop
+% 注：RMSprop 没有正式论文，只有 Coursera 课程讲义。这是目前学界通用的引用方式：
+@misc{tieleman2012rmsprop,
+  title={Lecture 6.5---RMSprop: Divide the gradient by a running average of its recent magnitude},
+  author={Tieleman, Tijmen and Hinton, Geoffrey},
+  howpublished={Coursera: Neural Networks for Machine Learning},
+  year={2012},
+  url={https://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf}
+}
+
+% 8. Adam
+@article{kingma2014adam,
+  title={Adam: A method for stochastic optimization},
+  author={Kingma, Diederik P and Ba, Jimmy},
+  journal={arXiv preprint arXiv:1412.6980},
+  year={2014},
+  note={Published as a conference paper at ICLR 2015}
+}
+
+% 9. Nadam (Nesterov-accelerated Adam)
+@misc{dozat2016incorporating,
+  title={Incorporating Nesterov momentum into Adam},
+  author={Dozat, Timothy},
+  howpublished={ICLR 2016 Workshop},
+  year={2016},
+  url={https://openreview.net/pdf?id=OMjvwB8jIp57ZJjtNEZ}
+}
+
+% 10. AdamW (Decoupled Weight Decay)
+@inproceedings{loshchilov2017decoupled,
+  title={Decoupled weight decay regularization},
+  author={Loshchilov, Ilya and Hutter, Frank},
+  booktitle={International Conference on Learning Representations},
+  year={2017},
+  note={Also available as arXiv:1711.05101}
+}
